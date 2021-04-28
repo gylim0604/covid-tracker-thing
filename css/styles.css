@@ -1,45 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-body{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: hsl(0, 0%, 30%);
+  --bg-main-color: rgb(139, 197, 217);
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+main{
+    padding: 0 5vw;
+}
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+h2 {
+  font-weight: 700;
+}
+h3{
     font-weight: 400;
+}
+select {
+  width: 15rem;
+}
+
+.header {
+  color: var(--text-color);
+  background-color: var(--bg-main-color);
+  width: 100%;
+  display: grid;
+  place-content: center;
+  padding: 1rem;
+}
+.container {
     display: grid;
-    place-content: center;
-}
-h1{
-    font-weight: 700;
-}
-h2{
-    font-weight: 400;
 }
 
-
-.container{
-    display: flex;
-    flex-direction: column;
+.card {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  border: 1px solid var(--bg-main-color);
+  color: var(--text-color);
 }
 
-.card{
-    flex-basis: 100%;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 1rem;
-    border: 1px solid #48cae4;
-    color: hsl(0, 0%, 30%);
+@media only screen and (min-width: 1000px) {
+  main {
+    max-width: 1280px;
+  }
+  .container {
+    grid-template-columns: repeat(3,1fr);
+    padding-top: 3rem;
+  }
+  .card {
+    margin: 0 1rem;
+  }
 }
-
-
-@media only screen and (min-width: 700px){
-    main{
-        max-width: 1300px;
-    }
-    .container{
-        flex-direction: row;
-        padding-top: 3rem;
-    }
-    .card{
-        margin: 0 1rem;
-    }
-}
-

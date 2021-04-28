@@ -11,50 +11,54 @@ fetchCountry().then((data) =>
   })
 );
 
-function updateString(str, val){
-    return str.substr(0,str.indexOf(":")+2) +formatNumber(val)
-}
-
 function formatNumber(num){
-    // return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return num;
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-async function fetchTotal(arg) {
-  fetch(arg)
-    .then((response) => response.json())
+// function to call covid data api 
+async function fetchByCountry(url) {
+  fetch(url)
+  // Need to catch undefined and handle here
+    .then((response) => {
+      if(!response.ok){
+        throw new Error("Country not found or doesn't have any cases")
+      }
+      else{ 
+        return response.json()
+      }
+    })
     .then((data) => {
       let card = document.getElementsByClassName('card');
       let cases = card.namedItem('cases').children;
       let deaths = card.namedItem('deaths').children;
       let recovered = card.namedItem('recovered').children;
+      //Update each card to have the respective 
+      cases[0].children[1].innerHTML = formatNumber(data.todayCases)
+      cases[1].children[1].innerHTML = formatNumber(data.cases)
 
-      cases[0].innerHTML = updateString(cases[0].innerHTML,data.todayCases)
-      cases[1].innerHTML = updateString(cases[1].innerHTML,data.cases)
+      deaths[0].children[1].innerHTML = formatNumber(data.todayDeaths)
+      deaths[1].children[1].innerHTML = formatNumber(data.deaths)
 
-      deaths[0].innerHTML = updateString(deaths[0].innerHTML,data.todayDeaths)
-      deaths[1].innerHTML = updateString(deaths[0].innerHTML,data.deaths)
-
-      recovered[0].innerHTML = updateString(recovered[0].innerHTML,data.todayRecovered)
-      recovered[1].innerHTML = updateString(recovered[0].innerHTML,data.recovered)
-    });
+      recovered[0].children[1].innerHTML = formatNumber(data.todayRecovered)
+      recovered[1].children[1].innerHTML = formatNumber(data.recovered)
+    })
+    .catch(e => alert('EXCEPTION: '+ e));
 }
 
-function test(){
+function dropdownUpdate(){
   let select = document.getElementById("country")
   let global = 'https://disease.sh/v3/covid-19/all';
-  let code = "MY";
+  let code = select.value;
 
 
-  console.log(select.value)
   if(select.value === "all"){
-    fetchTotal(global)
+    fetchByCountry(global)
   }
   else{
-    code = select.value
     let countryurl =  'https://disease.sh/v3/covid-19/countries/' + code + '?strict=true';
     console.log(countryurl)
-    fetchTotal(countryurl)
+    fetchByCountry(countryurl)
   }
+
 }
 
-test()
+dropdownUpdate()

@@ -8,29 +8,46 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+    <div class="header">
+        <h1>Corona Tracker</h1>
+        <span class="dropdown">
+            <label for="country">Country:</label>
+            <select name="country" id="country" onchange="dropdownUpdate()">
+                <option value="all" selected="selected">Global</option>
+            </select>
+        </span>
+    </div>
     <main>
-        <div class="header">
-            <h1>Corona Tracker</h1>
-            <span class="dropdown">
-                <label for="country">Country:</label>
-                <select name="country" id="country" onchange="test()">
-                    <option value="all" selected="selected">Global</option>
-                </select>
-            </span>
-
-        </div>
-        <div class="container">
+       <div class="container">
             <div class="card" id="cases">
-                <h2>Today's Cases: </h2>
-                <h2>Total Cases: </h2>
+                <span >
+                    <h2>Today's Cases: </h2>
+                    <h3>0</h3>
+                </span>
+                <span >
+                    <h2>Total Cases: </h2>
+                    <h3></h3>
+                </span>
             </div>
             <div class="card" id="deaths">
-                <h2>Today's Deaths: </h2>
-                <h2>Total Deaths: </h2>
+                <span >
+                    <h2>Today's Deaths: </h2>
+                    <h3></h3>
+                </span>
+                <span >
+                    <h2>Total Deaths: </h2>
+                    <h3></h3>
+                </span>
             </div>
             <div class="card" id="recovered">
-                <h2>Today's Recovered: </h2>    
-                <h2>Total Recovered: </h2>
+                <span >
+                    <h2>Today's Recovered: </h2>
+                    <h3></h3>
+                </span>
+                <span >
+                    <h2>Total Recovered: </h2>
+                    <h3></h3>
+                </span>
             </div>
         </div>
     </main>
