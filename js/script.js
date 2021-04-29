@@ -1,15 +1,9 @@
+// function to fetch all countries and their respective country code
 async function fetchCountry() {
   const response = await fetch('https://restcountries.eu/rest/v2/all');
   const data = response.json();
   return data;
 }
-
-fetchCountry().then((data) =>
-  data.map((arr) => {
-    let hcList = document.getElementById('country');
-    hcList.add(new Option(arr.name, arr.alpha2Code));
-  })
-);
 
 function formatNumber(num){
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -44,6 +38,7 @@ async function fetchByCountry(url) {
     .catch(e => alert('EXCEPTION: '+ e));
 }
 
+// function to update the html data
 function dropdownUpdate(){
   let select = document.getElementById("country")
   let global = 'https://disease.sh/v3/covid-19/all';
@@ -60,5 +55,10 @@ function dropdownUpdate(){
   }
 
 }
-
+fetchCountry().then((data) =>
+  data.map((arr) => {
+    let hcList = document.getElementById('country');
+    hcList.add(new Option(arr.name, arr.alpha2Code));
+  })
+);
 dropdownUpdate()
