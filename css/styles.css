@@ -42,11 +42,12 @@ select {
   color: var(--text-color);
   background-color: var(--bg-main-color);
   width: 100%;
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
   padding: 1rem;
 }
 .container {
+  padding: 1rem 0;
     display: grid;
 }
 
@@ -58,15 +59,25 @@ select {
   color: var(--text-color);
 }
 
+.dropdown{
+  grid-row: 1/2;
+}
+
 @media only screen and (min-width: 1000px) {
   main {
     max-width: 1280px;
   }
   .container {
     grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
     padding-top: 3rem;
   }
   .card {
     margin: 0 1rem;
+  }
+  .dropdown{
+    grid-column: 1/4;
+    display: flex;
+    justify-content: center;
   }
 }
